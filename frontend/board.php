@@ -78,7 +78,7 @@
 
 					  
 					  <div><!-- delete task --><form method="post"><input type="hidden" name="taskcol" value="1" /><input type="hidden" name="remove" value="<?php echo $task['ID'];?>" /><button class="justify-center focus:outline-none uppercase font-bold justify-center bg-transparent border border-gray-500 hover:border-red-500 mb-1 text-gray-500 hover:text-red-500 font-bold py-1 px-2 rounded" type="submit" type="submit"> delete</button></form></div>
-					  <div class="flex text-blue-500 ml-auto justify-end text-lg font-bold"><!-- move task --><form method="post"><input type="hidden" name="taskcol" value="1" /><input type="hidden" name="move" value="<?php echo $task['ID']?>" /><button class="justify-center focus:outline-none uppercase font-bold justify-center bg-transparent border border-gray-500 hover:border-blue-500 text-gray-500 hover:text-blue-500 font-bold py-1 px-2 rounded " type="submit">Move to right</button></form></div>
+					  <div class="flex text-blue-500 ml-auto justify-end text-lg font-bold"><!-- move task --><form method="post"><input type="hidden" name="taskcol" value="1" /><input type="hidden" name="move" value="<?php echo $task['ID']?>" /><button class="focus:outline-none uppercase font-bold text-blue-500 mx-2 my-2 " type="submit">Move to right</button></form></div>
 					  <?php endif; ?>
 					  </div>
 					  <?php endforeach ?>
@@ -90,7 +90,7 @@
                   <div class="w-1/3 md:w-1/4 px-4 flex-shrink-0 justify-center items-center text-center mx-auto">
                     <div class="bg-gray-100 pb-4 space-y-3 rounded-lg shadow overflow-y-auto overflow-x-hidden border-t-8 border-orange-600" style="min-height: 100px">
                       <div class="flex justify-between items-center px-4 py-2 bg-gray-100 sticky top-0">
-                        <h2 x-text="board" class="font-medium text-gray-800">2DUE</h2>
+                        <h2 x-text="board" class="font-medium text-gray-800">Doing</h2>
                       </div>
 					  <?php foreach($doing as $task): ?>
 					  <div class="bg-white shadow p-6 text-center" x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak><?php echo $task['name'];?>
@@ -142,9 +142,9 @@
                   <div class="w-1/3 md:w-1/4 px-4 flex-shrink-0 justify-center items-center text-center mx-auto">
                     <div class="bg-gray-100 pb-4 space-y-3 rounded-lg shadow overflow-y-auto overflow-x-hidden border-t-8 border-orange-600" style="min-height: 100px">
                       <div class="flex justify-between items-center px-4 py-2 bg-gray-100 sticky top-0">
-                        <h2 x-text="board" class="font-medium text-gray-800">2DUE</h2>
+                        <h2 x-text="board" class="font-medium text-gray-800">Done</h2>
                       </div>
-					  <?php foreach($doing as $task): ?>
+					  <?php foreach($done as $task): ?>
 					  <div class="bg-white shadow p-6 text-center" x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak><?php echo $task['name'];?>
 					  <?php if(User::ifOwner($boardid)): ?>
 					  
@@ -178,7 +178,7 @@
 					  
 					  <div><!-- delete task --><form method="post"><input type="hidden" name="taskcol" value="1" /><input type="hidden" name="remove" value="<?php echo $task['ID'];?>" /><button class="justify-center focus:outline-none uppercase font-bold justify-center bg-transparent border border-gray-500 hover:border-red-500 mb-1 text-gray-500 hover:text-red-500 font-bold py-1 px-2 rounded" type="submit" type="submit"> delete</button></form></div>
 	  
-					  <div class="flex text-blue-500 ml-auto justify-end text-lg font-bold"><!-- move task --><form method="post"><input type="hidden" name="taskcol" value="0" /><input type="hidden" name="move" value="<?php echo $task['ID']?>" /><button class="focus:outline-none uppercase font-bold text-blue-500 mx-2 my-2 " type="submit">Move to left</button></form></div>
+					  <div class="flex text-blue-500 ml-auto justify-start text-lg font-bold"><!-- move task --><form method="post"><input type="hidden" name="taskcol" value="0" /><input type="hidden" name="move" value="<?php echo $task['ID']?>" /><button class="focus:outline-none uppercase font-bold text-blue-500 mx-2 my-2 " type="submit">Move to left</button></form></div>
 
 
 					  <?php endif; ?>
