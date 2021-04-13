@@ -2,8 +2,8 @@
 class DatabaseConnector {
 
 	private static function connect() {
-		
-///NOPASS //then we tell pdo which password
+		$pdo = new PDO('mysql:host=127.0.0.1;dbname=PUTDBNAMEHERE;charset=utf8', 'USERNAME', 'PASS');
+		//then we tell pdo which password
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $pdo;
 	}

@@ -6,9 +6,9 @@ $GLOBALS['config']['url_offset'] = 2;
 
 $GLOBALS['db_conf']['db_host'] = "127.0.0.1";
 $GLOBALS['db_conf']['port'] = "3306";
-$GLOBALS['db_conf']['db_db'] = "igfastdl_postogon";
-$GLOBALS['db_conf']['db_user'] = "igfastdl";
-$GLOBALS['db_conf']['db_pass'] = "UR5WnRgRgUcT9mh5";
+$GLOBALS['db_conf']['db_db'] = "2due";
+$GLOBALS['db_conf']['db_user'] = "";
+$GLOBALS['db_conf']['db_pass'] = "";
 $GLOBALS['db_conf']['db_charset'] = "utf8";
 
 $GLOBALS['captchakey'] = "6Le78IYaAAAAABI-i2ogmy6FXYW3K2Ez-PQgBX6c";
