@@ -52,7 +52,6 @@ $userid = User::isLoggedIn();
  * Creates a new board
  */
 public static function createTask($taskname, $boardid) {
-$userid = User::isLoggedIn();	
   DatabaseConnector::query('INSERT INTO board_items (board_id, name, board_column) VALUES (:boardid, :name, "0")',array(':boardid'=>$boardid, ':name'=>$taskname));
 }
 
@@ -61,13 +60,30 @@ $userid = User::isLoggedIn();
  * Creates a new board
  */
 public static function deleteBoard($boardId) {
-$userid = User::isLoggedIn();	
 //delete board
   DatabaseConnector::query('DELETE FROM boards WHERE ID = :boardId',array(':boardId'=>$boardId));
   //delete board items
   DatabaseConnector::query('DELETE FROM board_items WHERE board_id=:boardId', array(':boardId'=>$boardId));
- 
-  
+}
+
+/**
+ * Function to delete a task
+ * removes selected boardid from board_items
+ */
+public static function deleteTask($taskId) {
+  //delete board items
+  DatabaseConnector::query('DELETE FROM board_items WHERE ID=:taskid', array(':taskid'=>$taskId));
+}
+
+/**
+ * Function to move a task
+ * updates selected task
+ */
+public static function moveTask($taskId, $taskCol) {
+  //move board item
+
+  DatabaseConnector::query('UPDATE board_items SET board_column=:board_column WHERE ID=:taskid', array(':taskid'=>$taskId,':board_column'=>$taskCol));
+
 }
 
 public static function getBoardName($boardId)
@@ -79,6 +95,33 @@ public static function getBoardName($boardId)
 	}
 	else {
 
+	return false;
+	}
+}
+
+public static function getBoardUser($boardId)
+{
+	//grabs the userid of the given username $id. else return false.
+	if(DatabaseConnector::query('SELECT userid FROM boards WHERE ID=:boardId', array(':boardId'=>$boardId))){
+
+	$buser = DatabaseConnector::query('SELECT userid FROM boards WHERE ID=:boardId', array(':boardId'=>$boardId))[0]['userid'];
+	
+	return DatabaseConnector::query('SELECT email FROM users WHERE id=:buser', array(':buser'=>$buser))[0]['email'];
+	}
+	else {
+
+	return false;
+	}
+}
+
+public static function ifOwner($boardid)
+{
+	$userid = User::isLoggedIn();
+	//grabs the userid of the given username $id. else return false.
+	if(DatabaseConnector::query('SELECT name FROM boards WHERE ID=:boardId AND userid=:userid', array(':boardId'=>$boardid,':userid'=>$userid))){
+	return true;
+	}
+	else {
 	return false;
 	}
 }
