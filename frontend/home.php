@@ -35,17 +35,30 @@ User::createBoard($boardname);
 		  
 		  
         </div>	  
- <?php foreach($boards as $board): ?>  
-<?php echo $board['name'];?>
- <?php endforeach; ?>
+
 
         <div>
 
 
           <div class="bg-white mt-10 rounded-lg p-6 md:p-10 md:max-w-md mx-auto shadow-md">
             <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Boards</label>
-            <div class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
-			<div class="bg-white shadow p-6 rounded-lg"><div class="flex"><div>board1</div><div class="ml-auto">text</div></div></div>
+            <div class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 space-y-2">
+			 <?php foreach($boards as $board): ?>
+			<div class="bg-white shadow p-6 rounded-lg"><a href="board/<?php echo $board['ID'];?>"><div class="flex"><div><?php echo $board['name'];?> <div class="text-gray-400 text-xs"><?php echo zdateRelative($board['date_created']);?></div></div></a><div class="ml-auto  text-red-500"><form method="post"><input type="hidden" name="remove" value="<?php echo $board['ID'];?>" /><button class="focus:outline-none uppercase font-bold" type="submit"> delete</button>
+
+			</form>
+			<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+echo "arwerew";
+  // collect value of input field
+		$boardId = $_POST['remove'];
+		User::deleteBoard($boardId);
+		header('location: /private/public_html/home');		
+}
+		?>			
+			</div></div></div>
+			 <?php endforeach; ?>			
+
 			</div>
           </div>
 

@@ -47,5 +47,42 @@ $userid = User::isLoggedIn();
 }
 
 
+/**
+ * Function to create a new task
+ * Creates a new board
+ */
+public static function createTask($taskname, $boardid) {
+$userid = User::isLoggedIn();	
+  DatabaseConnector::query('INSERT INTO board_items (board_id, name, board_column) VALUES (:boardid, :name, "0")',array(':boardid'=>$boardid, ':name'=>$taskname));
+}
+
+/**
+ * Function to delete a board
+ * Creates a new board
+ */
+public static function deleteBoard($boardId) {
+$userid = User::isLoggedIn();	
+//delete board
+  DatabaseConnector::query('DELETE FROM boards WHERE ID = :boardId',array(':boardId'=>$boardId));
+  //delete board items
+  DatabaseConnector::query('DELETE FROM board_items WHERE board_id=:boardId', array(':boardId'=>$boardId));
+ 
+  
+}
+
+public static function getBoardName($boardId)
+{
+	//grabs the userid of the given username $id. else return false.
+	if(DatabaseConnector::query('SELECT name FROM boards WHERE ID=:boardId', array(':boardId'=>$boardId))){
+
+	return DatabaseConnector::query('SELECT name FROM boards WHERE ID=:boardId', array(':boardId'=>$boardId))[0]['name'];
+	}
+	else {
+
+	return false;
+	}
+}
+
+
 
 }
