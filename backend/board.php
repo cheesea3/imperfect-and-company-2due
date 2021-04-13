@@ -46,7 +46,26 @@ User::createTask($taskname, $GLOBALS['url_loc'][2]);
 	}
 		}
 		
+	if(isset($_POST['contents'])){
 		
+
+function isEmpty($string){
+    $val = preg_replace('#[^A-Za-z0-9]+#', '', $string) ;
+    $val = trim($string, '');
+    return ($string=='') ;
+}		
+		
+		if(!isEmpty($_POST['contents'])){
+		$taskContent = $_POST['contents'];
+		$taskId = $_POST['edit'];  	
+	User::editTask($taskId, $taskContent);
+  header('location: /private/public_html/board/' . $GLOBALS['url_loc'][2]);
+		} else {
+		echo "you can't have this empty";
+		}
+  
+  
+	} 		
 }
 
 

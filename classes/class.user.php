@@ -86,6 +86,17 @@ public static function moveTask($taskId, $taskCol) {
 
 }
 
+/**
+ * Function to edit a task
+ * updates selected task
+ */
+public static function editTask($taskId, $taskContent) {
+  //move board item
+
+  DatabaseConnector::query('UPDATE board_items SET name=:name WHERE ID=:taskid', array(':taskid'=>$taskId,':name'=>$taskContent));
+
+}
+
 public static function getBoardName($boardId)
 {
 	//grabs the userid of the given username $id. else return false.

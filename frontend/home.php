@@ -17,21 +17,7 @@
             <input type="text" name="boardname" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" placeholder="Pick a board name and hit enter...">
 			<button class="py-2 px-1 ml-auto flex rounded-lg mt-2 px-4 font-bold bg-blue-500 focus:outline-none select-none text-white transition hover:bg-blue-700 cursor-pointer transition-delay-400" >Create</button>
           </div>
-		  </form>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  // collect value of input field
-		$boardname = $_POST['boardname'];
-		
-	if($_POST['boardname'] != ""){	
-User::createBoard($boardname);
-  header('location: /private/public_html/home');
-	} else {
-	echo "something went wrong!";
-	}	
-}
-?>
 		  
 		  
         </div>	  
