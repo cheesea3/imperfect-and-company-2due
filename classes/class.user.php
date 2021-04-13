@@ -34,8 +34,17 @@ public static function isLoggedIn()
 	
 	return false;	
 }
-	
 
+
+
+/**
+ * Function to insert a new board
+ * Creates a new board
+ */
+public static function createBoard($boardname) {
+$userid = User::isLoggedIn();	
+  DatabaseConnector::query('INSERT INTO boards (userid, name, archive, date_created) VALUES (:userid, :boardname, "0", UNIX_TIMESTAMP())',array(':userid'=>$userid, 'boardname'=>$boardname));
+}
 
 
 

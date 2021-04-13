@@ -35,6 +35,9 @@ switch($GLOBALS['url_loc'][1]){
     case "redeem":
         include('../backend/redeem.php');
 	break;
+    case "profile":
+        include('../backend/profile.php');
+	break;
     case "logout":
         include('../backend/logout.php');	
     break;	
@@ -93,7 +96,10 @@ switch($GLOBALS['url_loc'][1]){
 	break;
     case "profile":
         include('../frontend/profile.php');
-	break;			
+	break;	
+    case "settings":
+        include('../frontend/settings.php');	
+    break; 		
     case "login":
         include('../frontend/login.php');	
     break; 	

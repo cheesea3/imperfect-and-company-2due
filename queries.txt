@@ -1,8 +1,55 @@
-CREATE TABLE users (
-    id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(32) DEFAULT NULL,
-    email TEXT DEFAULT utf8_general_ci	NULL,
-    password VARCHAR(60) DEFAULT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UpdatedAt DATETIME NOT NULL
-)
+CREATE TABLE `board` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `task` varchar(65) DEFAULT NULL,
+ `type` varchar(45) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4
+
+
+CREATE TABLE `boards` (
+ `ID` int(6) unsigned NOT NULL AUTO_INCREMENT,
+ `userid` int(6) unsigned DEFAULT NULL,
+ `name` varchar(255) DEFAULT NULL,
+ `archive` int(2) unsigned DEFAULT NULL,
+ `date_created` int(11) DEFAULT NULL,
+ PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8
+
+	CREATE TABLE `board_items` (
+ `ID` int(6) unsigned NOT NULL AUTO_INCREMENT,
+ `board_ID` int(6) unsigned DEFAULT NULL,
+ `name` varchar(255) DEFAULT NULL,
+ `board_column` int(3) DEFAULT NULL,
+ PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8
+
+	CREATE TABLE `login_tokens` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `token` char(64) DEFAULT NULL,
+ `user_id` int(11) unsigned DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `token` (`token`),
+ KEY `user_id` (`user_id`),
+ CONSTRAINT `login_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8
+
+
+CREATE TABLE `password_tokens` (
+ `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `token` char(64) DEFAULT NULL,
+ `user_id` int(11) unsigned DEFAULT NULL,
+ PRIMARY KEY (`ID`),
+ UNIQUE KEY `token` (`token`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8
+
+
+CREATE TABLE `users` (
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ `username` varchar(32) DEFAULT NULL,
+ `email` text,
+ `password` varchar(60) DEFAULT NULL,
+ `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ `updatedAt` datetime DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+
